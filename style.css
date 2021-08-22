@@ -9,3 +9,17 @@ canvas {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+#info-container {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+}
+
+p {
+  font-size: 1.2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-right: 1rem;
+}

@@ -15,11 +15,35 @@ canvas {
   flex-direction: row;
   position: absolute;
   top: 50px;
-  left: 50px;
+  left: 60px;
 }
 
 p {
   font-size: 1.2rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin-right: 1rem;
+  border: 3px solid salmon;
+  padding: 1rem;
+}
+
+#buttons {
+  position: absolute;
+  display: column;
+  flex-direction: column;
+  /* width: 30%; */
+  align-self: flex-end;
+  top: 850px;
+  left: 60px;
+}
+
+label {
+  font-size: 1.2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input {
+  padding: 0.5rem;
+  margin-right: 1rem;
+  font-size: 1.2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

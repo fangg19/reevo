@@ -1,6 +1,8 @@
 * {
   padding: 0;
   margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.2rem;
 }
 
 canvas {
@@ -10,27 +12,44 @@ canvas {
   transform: translate(-50%, -50%);
 }
 
+@media all and (max-width: 400px) {
+  canvas {
+    margin-top: 100px;
+  }
+
+  * {
+    font-size: 0.7rem;
+  }
+
+  #info-container {
+    display: flex;
+    width: 300px;
+    flex-direction: column;
+    margin: 20px;
+  }
+
+  #buttons {
+    flex-direction: column;
+  }
+}
+
 #info-container {
   display: flex;
-  flex-direction: row;
-  position: absolute;
-  top: 50px;
-  left: 60px;
+  margin: 50px;
 }
 
 p {
   font-size: 1.2rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin-right: 1rem;
-  border: 3px solid salmon;
+  margin-bottom: 2rem;
+  border: 3px solid rgb(90, 252, 112);
   padding: 1rem;
 }
 
 #buttons {
   position: absolute;
-  display: column;
-  flex-direction: column;
-  /* width: 30%; */
+  display: flex;
+  flex-direction: row;
   align-self: flex-end;
   top: 850px;
   left: 60px;
@@ -38,12 +57,12 @@ p {
 
 label {
   font-size: 1.2rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-right: 0.5rem;
 }
 
 input {
-  padding: 0.5rem;
+  padding: 0.2rem;
   margin-right: 1rem;
   font-size: 1.2rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 2rem;
 }

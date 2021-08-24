@@ -1,11 +1,14 @@
 const Application = PIXI.Application;
 
 const app = new Application({
-  width: 1000,
-  height: 700,
+  width: window.innerWidth,
+  height: 600,
   backgroundColor: 0xfbda66,
   antialias: true,
 });
+
+console.log(app);
+console.log(app.renderer);
 app.renderer.view.style.position = 'absolute';
 app.renderer.view.style.display = 'block';
 
@@ -19,26 +22,7 @@ const canvas = document.querySelector('#canvas-wrapper').appendChild(app.view);
 
 let shapes = [];
 let speed = 5;
-
 let area = 0;
-
-//get mouse coordinates
-let mousePosition;
-function getMousePos(canvas, evt) {
-  const rect = canvas.getBoundingClientRect();
-  return {
-    x: evt.clientX - rect.left,
-    y: evt.clientY - rect.top,
-  };
-}
-canvas.addEventListener(
-  'mousemove',
-  function (evt) {
-    let mousePos = getMousePos(canvas, evt);
-    mousePosition = mousePos;
-  },
-  false
-);
 
 //create new shape
 const createShape = (xPosition) => {
@@ -49,15 +33,17 @@ const createShape = (xPosition) => {
   let sprite = new PIXI.Sprite(texture);
 
   shape
-    .beginFill(0x4361ee)
+    .beginFill(Math.random() * 0xffffff)
     .drawRect(xPosition - 100 / 2, -100, 100, 100)
     .endFill();
 
   sprite.interactive = true;
   sprite.buttonMode = true;
   sprite.speed = speed;
-
+  sprite.on('pointerdown', destroyShape);
+  // sprite.on('tap', destroyShape);
   shapes.push(sprite);
+
   sprite.addChild(shape);
   app.stage.addChild(sprite);
 
@@ -66,19 +52,26 @@ const createShape = (xPosition) => {
   return sprite;
 };
 
+//onclcik destroy shape
+function destroyShape() {
+  this.dead = true;
+}
+
 //onclick call createShape
 window.app = app;
 app.renderer.plugins.interaction.on('pointerdown', () => {
-  createShape(mousePosition.x);
+  createShape(app.renderer.plugins.interaction.mouse.global.x);
 });
 
 //ticker for shape movement
 app.ticker.add(updateShapes);
 
-function updateShapes(delta) {
+function updateShapes() {
   //move shapes and clear them from stage and array after getting out of stage
   for (let i = 0; i < shapes.length; i++) {
     shapes[i].position.y += shapes[i].speed;
+
+    //get the area of each shape * no. of shapes
     area =
       shapes[i].children[0].width *
       shapes[i].children[0].height *
@@ -93,8 +86,8 @@ function updateShapes(delta) {
       area = 0;
     }
   }
-  //keep the info updated
 
+  //keep the info on the screen updated
   speed = Number(gravityValue.value) || 5;
   shapesCounter.innerText = `No. of current shapes on the screen: ${shapes.length}`;
   occupiedArea.innerText = `${area}p^2 of the area is occupied by the shapes.`;

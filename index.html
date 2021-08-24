@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="initial-scale=1, maximum-scale=1, user-scalable=no, minimum-scale=1, width=device-width, height=device-height"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>Reevo Test</title>
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -15,10 +20,13 @@
     </div>
 
     <div id="buttons">
-      <label for="shapes-per-second">No. of shapes pe second</label>
-      <input type="number" name="shapes-per-second" id="shapes-per-second" />
       <label for="gravity-value">Gravity Value</label>
-      <input type="number" name="gravity-value" id="gravity-value" />
+      <input
+        type="number"
+        name="gravity-value"
+        id="gravity-value"
+        placeholder="5"
+      />
     </div>
     <script src="./node_modules/pixi.js/dist/browser/pixi.js"></script>
     <script src="./app.js"></script>
